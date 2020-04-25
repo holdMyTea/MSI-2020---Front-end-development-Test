@@ -1,0 +1,12 @@
+body {
+  display: flex;
+}
+
+.main {
+  flex-grow: 2;
+}
+
+.fav-bar {
+  flex-grow: 1;
+  background-color: #f8f8f8;
+}
