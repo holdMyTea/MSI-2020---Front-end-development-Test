@@ -2,8 +2,102 @@ body {
   display: flex;
 }
 
-.main {
+main {
   flex-grow: 2;
+}
+
+main .container {
+  width: 680px;
+  margin: 40 auto 0 auto;
+}
+
+.msi-header {
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  line-height: 28px;
+  color: #333;
+}
+
+.hey {
+  margin-top: 78px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 44px;
+  color: #333;
+}
+
+.find-header {
+  margin-bottom: 46px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 44px;
+  color: #333;
+}
+
+/* search option radio buttons */
+.search-option {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  color: #333;
+}
+
+/* hiding native input */
+.search-option input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* inactive radio outer circle */
+.search-option .radio {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: 2px solid #ABABAB;
+  box-sizing: border-box;
+  border-radius: 100%;
+}
+
+/* active radio button's outer circle */
+.search-option input:checked ~ .radio {
+  border: 2px solid #333;
+}
+
+/* inner radio button circle, invisible if not checked */
+.radio:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* enabling inner radio circle, when checked */
+.search-option input:checked ~ .radio:after {
+  display: block;
+}
+
+/* inner circle's styles */
+.search-option .radio:after {
+  background-color: #333;
+  top: 2.5px;
+  left: 2.5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
 }
 
 .fav-bar {
