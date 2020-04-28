@@ -157,6 +157,49 @@ main .container {
   color: #ABABAB;
 }
 
+.search-button {
+  padding: 10px 40px;
+  background: linear-gradient(92.01deg, #8EA7FF 0%, #7291FF 100%);
+  border-radius: 10px; 
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  color: #FFFFFF;
+  border: none;
+}
+
+.fetch-results {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.fetched-joke {
+  width: 100%;
+  height: 225px;
+  border-radius: 20px;
+  background: #F8F8F8;
+  padding: 40px 40px 45px 40px;
+}
+
+.joke-icon-column {
+  width: 40px;
+  height: 100%;
+  margin-right: 20px;
+  float: left;
+}
+
+.joke-main-column {
+  width: calc(100% - 40px - 20px);
+}
+
+.favorite-button {
+  width: 20px;
+  height: 17px;
+  float: right;
+}
+
 .fav-bar {
   flex-grow: 1;
   background-color: #f8f8f8;
