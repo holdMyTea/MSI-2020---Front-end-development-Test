@@ -190,11 +190,21 @@ main .container {
   float: left;
 }
 
+.joke-message-icon {
+  width: 40px;
+  height: 40px;
+}
+
 .joke-main-column {
   width: calc(100% - 40px - 20px);
 }
 
-.favorite-button {
+.joke-favorite-container {
+  width: 100%;
+  height: 17px;
+  margin-bottom: 10px;
+}
+.joke-favorite-container > img {
   width: 20px;
   height: 17px;
   float: right;
