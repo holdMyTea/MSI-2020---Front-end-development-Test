@@ -180,6 +180,7 @@ main .container {
   border-radius: 20px;
   background: #F8F8F8;
   padding: 40px 40px 45px 40px;
+  overflow: auto;
 }
 
 .joke-favorite-container {
@@ -195,11 +196,10 @@ main .container {
 
 .joke-icon-column {
   width: 40px;
-  height: 100%;
   margin-right: 20px;
   float: left;
 }
-.joke-message-column > img {
+.joke-icon-column > img {
   width: 40px;
   height: 40px;
 }
@@ -237,8 +237,9 @@ main .container {
 
 .joke-text {
   font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
+  /* identical to box height, or 140% */
+
+
   font-size: 18px;
   line-height: 26px;
   color: #333333;
@@ -274,4 +275,13 @@ main .container {
 .fav-bar {
   flex-grow: 1;
   background-color: #f8f8f8;
+  padding: 40px 40px 0 40px;
+}
+.fav-bar header {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  color: #ABABAB;
 }
