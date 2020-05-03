@@ -1,6 +1,6 @@
 import React from 'react'
 
-import MainPanel from './components/MainPanel'
+import MainPanel from './MainPanel/MainPanel'
 import FavoritePanel from './components/FavoritePanel'
 
 import '../public/reset.css'
