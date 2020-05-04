@@ -1,0 +1,38 @@
+.categories-container {
+  padding: 20px 0;
+}
+
+.categories-container > span {
+  margin-right: 10px;
+}
+
+/* default category label */
+.categories-container label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ABABAB;
+  border: 2px solid #F8F8F8;
+  background-color: none;
+  box-sizing: border-box;
+  border-radius: 6px;
+  padding: 6px 15px;
+}
+
+/* hiding native input */
+.categories-container input {
+  opacity: 0;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+}
+
+/* checked category label */
+.categories-container input:checked ~ label {
+  color: #333;
+  background-color: #F8F8F8;
+}

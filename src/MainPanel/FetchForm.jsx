@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import SearchOption from './FormComponents/SearchOption'
 import CategoriesSelector from './FormComponents/CategoriesSelector'
 
+import './FetchForm.css'
+
 const searchOptions = {
   random: 'Random',
   fromCategories: 'From categories',

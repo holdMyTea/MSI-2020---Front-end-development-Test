@@ -1,0 +1,60 @@
+.msi-header {
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  line-height: 28px;
+  color: #333;
+}
+
+.hey {
+  margin-top: 78px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 44px;
+  color: #333;
+}
+
+.find-header {
+  margin-bottom: 46px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 44px;
+  color: #333;
+}
+
+#search-input {
+  width: 100%;
+  border: 2px solid #333;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin: 10px 0 0 0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+#search-input::placeholder {
+  color: #ABABAB;
+}
+
+.search-button {
+  padding: 10px 40px;
+  margin-top: 20px;
+  background: linear-gradient(92.01deg, #8EA7FF 0%, #7291FF 100%);
+  border-radius: 10px; 
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  color: #FFFFFF;
+  border: none;
+}

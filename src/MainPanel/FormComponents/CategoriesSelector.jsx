@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './CategoriesSelector.css'
+
 const Category = ({ label }) => {
   const id = `category-check-${label}`
   return (

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './SearchOption.css'
+
 const SearchOption = ({ label, value, onClick }) => (
   <label className="search-option" onClick={onClick}>
     {label}

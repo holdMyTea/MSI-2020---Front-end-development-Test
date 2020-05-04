@@ -1,0 +1,13 @@
+.fav-bar {
+  flex-grow: 1;
+  background-color: #f8f8f8;
+  padding: 40px 40px 0 40px;
+}
+.fav-bar header {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  color: #ABABAB;
+}
