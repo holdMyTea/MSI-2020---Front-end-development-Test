@@ -1,4 +1,5 @@
 .fav-bar {
+  height: 100%;
   flex-grow: 1;
   background-color: #f8f8f8;
   padding: 40px 40px 0 40px;

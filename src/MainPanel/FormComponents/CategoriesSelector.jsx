@@ -17,8 +17,8 @@ Category.propTypes = {
   onClick: t.func.isRequired
 }
 
-const CategoriesSelector = ({ categories, selectedCategory, onCategoryClick }) => (
-  <div className="categories-container">
+const CategoriesSelector = ({ categories, selectedCategory, onCategoryClick, visible }) => (
+  <div className={`categories-container ${visible ? 'visible-category-container' : ''}`}>
     {
       categories.map(category => (
         <Category key={category}
@@ -33,7 +33,8 @@ const CategoriesSelector = ({ categories, selectedCategory, onCategoryClick }) =
 CategoriesSelector.propTypes = {
   categories: t.arrayOf(t.string),
   selectedCategory: t.string,
-  onCategoryClick: t.func.isRequired
+  onCategoryClick: t.func.isRequired,
+  visible: t.bool.isRequired
 }
 
 export default CategoriesSelector

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import SearchOption from './FormComponents/SearchOption'
 import CategoriesSelector from './FormComponents/CategoriesSelector'
+import TextSearchInput from './FormComponents/TextSearchInput'
 
 import './FetchForm.css'
 
@@ -20,6 +21,9 @@ const FetchForm = () => {
 
   // state for the selected category within CategorySelector
   const [selectedCategory, setSelectedCategory] = useState()
+
+  // state for text search input
+  const [textSearchInput, setTextSearchInput] = useState('')
 
   useEffect(() => {
     fetch('https://api.chucknorris.io/jokes/categories')
@@ -42,21 +46,21 @@ const FetchForm = () => {
         onClick={() => setSelectedOption(searchOptions.fromCategories)}
         checked={selectedOption === searchOptions.fromCategories}
       />
-      {selectedOption === searchOptions.fromCategories && (
-        <CategoriesSelector
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onCategoryClick={setSelectedCategory}
-        />
-      )}
+      <CategoriesSelector
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onCategoryClick={setSelectedCategory}
+        visible={selectedOption === searchOptions.fromCategories}
+      />
 
       <SearchOption label='Search'
         onClick={() => setSelectedOption(searchOptions.search)}
         checked={selectedOption === searchOptions.search}
       />
-      {selectedOption === searchOptions.search && (
-        <input type="text" name="search" id="search-input" placeholder="Free text search..." />
-      )}
+      <TextSearchInput value={textSearchInput}
+        onChange={setTextSearchInput}
+        visible={selectedOption === searchOptions.search}
+      />
 
       <button className="search-button">Get a joke</button>
     </>

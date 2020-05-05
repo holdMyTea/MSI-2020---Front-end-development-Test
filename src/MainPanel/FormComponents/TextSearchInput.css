@@ -1,0 +1,28 @@
+.search-input {
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 0;
+  opacity: 0;
+  height: 0px;
+  margin: 0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  transition: opacity 0.1s, padding 0.7s, margin 0.7s, height 0.7s;
+}
+
+.search-input::placeholder {
+  color: #ABABAB;
+}
+
+.search-input.visible-search-input {
+  padding: 10px 15px;
+  margin: 10px 0;
+  height: auto;
+  opacity: 1;
+  border: 2px solid #333;
+}

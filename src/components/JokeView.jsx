@@ -6,6 +6,7 @@ import filledHeartIcon from '../../assets/filled-heart-icon.svg'
 
 import './JokeView.css'
 
+// TODO: this bad boi oveflows the div.contatiner
 const Joke = ({ id, text, favorite, lastUpdated }) => (
   <div className="fetched-joke">
 
