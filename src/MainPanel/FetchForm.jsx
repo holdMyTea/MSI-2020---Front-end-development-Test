@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import SearchOption from './FormComponents/SearchOption'
 import CategoriesSelector from './FormComponents/CategoriesSelector'
@@ -12,7 +12,20 @@ const searchOptions = {
 }
 
 const FetchForm = () => {
+  // state for search option
   const [selectedOption, setSelectedOption] = useState()
+
+  // stores fetched joke categories
+  const [categories, setCategories] = useState([])
+
+  // state for the selected category within CategorySelector
+  const [selectedCategory, setSelectedCategory] = useState()
+
+  useEffect(() => {
+    fetch('https://api.chucknorris.io/jokes/categories')
+      .then(response => response.json())
+      .then(body => setCategories(body))
+  })
 
   return (
     <>
@@ -29,7 +42,13 @@ const FetchForm = () => {
         onClick={() => setSelectedOption(searchOptions.fromCategories)}
         checked={selectedOption === searchOptions.fromCategories}
       />
-      {selectedOption === searchOptions.fromCategories && (<CategoriesSelector />)}
+      {selectedOption === searchOptions.fromCategories && (
+        <CategoriesSelector
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onCategoryClick={setSelectedCategory}
+        />
+      )}
 
       <SearchOption label='Search'
         onClick={() => setSelectedOption(searchOptions.search)}
