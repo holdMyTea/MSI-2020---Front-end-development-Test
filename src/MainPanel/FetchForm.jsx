@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import t from 'prop-types'
 
 import SearchOption from './FormComponents/SearchOption'
 import CategoriesSelector from './FormComponents/CategoriesSelector'
@@ -12,9 +13,9 @@ const searchOptions = {
   search: 'Search'
 }
 
-const FetchForm = () => {
+const FetchForm = ({ onFetched }) => {
   // state for search option
-  const [selectedOption, setSelectedOption] = useState()
+  const [selectedOption, setSelectedOption] = useState(searchOptions.random)
 
   // stores fetched joke categories
   const [categories, setCategories] = useState([])
@@ -29,7 +30,30 @@ const FetchForm = () => {
     fetch('https://api.chucknorris.io/jokes/categories')
       .then(response => response.json())
       .then(body => setCategories(body))
-  })
+  }, [])
+
+  const onSubmit = () => {
+    let fetchURL
+    if (selectedOption === searchOptions.random) {
+      fetchURL = 'https://api.chucknorris.io/jokes/random'
+    } else if (selectedOption === searchOptions.fromCategories) {
+      if (!selectedCategory) {
+        return
+      }
+      fetchURL = `https://api.chucknorris.io/jokes/random?category=${selectedCategory}`
+    } else if (selectedOption === searchOptions.search) {
+      if (textSearchInput === '') {
+        return
+      }
+      fetchURL = `https://api.chucknorris.io/jokes/search?query=${textSearchInput}`
+    } else {
+      return
+    }
+
+    fetch(fetchURL)
+      .then(response => response.json())
+      .then(body => onFetched(body))
+  }
 
   return (
     <>
@@ -38,12 +62,12 @@ const FetchForm = () => {
       <header className="find-header">Lets try to find a joke for you:</header>
 
       <SearchOption label='Random'
-        onClick={() => setSelectedOption(searchOptions.random)}
+        onChange={() => setSelectedOption(searchOptions.random)}
         checked={selectedOption === searchOptions.random}
       />
 
       <SearchOption label='From categories'
-        onClick={() => setSelectedOption(searchOptions.fromCategories)}
+        onChange={() => setSelectedOption(searchOptions.fromCategories)}
         checked={selectedOption === searchOptions.fromCategories}
       />
       <CategoriesSelector
@@ -54,7 +78,7 @@ const FetchForm = () => {
       />
 
       <SearchOption label='Search'
-        onClick={() => setSelectedOption(searchOptions.search)}
+        onChange={() => setSelectedOption(searchOptions.search)}
         checked={selectedOption === searchOptions.search}
       />
       <TextSearchInput value={textSearchInput}
@@ -62,9 +86,12 @@ const FetchForm = () => {
         visible={selectedOption === searchOptions.search}
       />
 
-      <button className="search-button">Get a joke</button>
+      <button onClick={onSubmit} className="search-button">Get a joke</button>
     </>
   )
+}
+FetchForm.propTypes = {
+  onFetched: t.func.isRequired
 }
 
 export default FetchForm

@@ -6,11 +6,13 @@
   flex-wrap: wrap;
   padding: 0;
   opacity: 0;
+  visibility: hidden;
   transition: opacity 0.1s, padding 0.7s, height 0.7s;
 }
 
 .categories-container.visible-category-container {
   height: auto;
+  visibility: visible;
   opacity: 1;
   padding: 2px 0 20px 0;
 }

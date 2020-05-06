@@ -1,19 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import FetchForm from './FetchForm'
 import FetchResults from './FetchResults'
 
 import './MainPanel.css'
 
-const MainPanel = () => (
-  <main>
-    <div className="container">
+const MainPanel = () => {
+  const [fetchedJokes, setFetchedJokes] = useState([])
 
-      <FetchForm />
-      <FetchResults />
+  return (
+    <main>
+      <div className="container">
 
-    </div>
-  </main>
-)
+        <FetchForm onFetched={setFetchedJokes} />
+        <FetchResults jokes={fetchedJokes} />
+
+      </div>
+    </main>
+  )
+}
 
 export default MainPanel
