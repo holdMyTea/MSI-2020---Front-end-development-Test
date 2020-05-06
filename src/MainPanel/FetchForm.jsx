@@ -52,7 +52,13 @@ const FetchForm = ({ onFetched }) => {
 
     fetch(fetchURL)
       .then(response => response.json())
-      .then(body => onFetched(body))
+      .then(body => {
+        if (body.total) { // when there're multiple jokes
+          onFetched(body.result)
+        } else { // when there's only one
+          onFetched([body])
+        }
+      })
   }
 
   return (

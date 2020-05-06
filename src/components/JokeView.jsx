@@ -1,4 +1,5 @@
 import React from 'react'
+import t from 'prop-types'
 
 import messageIcon from '../../assets/message-icon.svg'
 import emptyHeartIcon from '../../assets/empty-heart-icon.svg'
@@ -6,8 +7,13 @@ import filledHeartIcon from '../../assets/filled-heart-icon.svg'
 
 import './JokeView.css'
 
-// TODO: this bad boi oveflows the div.contatiner
-const Joke = ({ id, text, favorite, lastUpdated }) => (
+const countHoursSinceDate = dateString => {
+  const start = new Date(dateString).getTime()
+  const end = new Date().getTime()
+  return Math.floor((end - start) / 3600000)
+}
+
+const Joke = ({ id, text, favorite, updatedAt, categories }) => (
   <div className="fetched-joke">
 
     <div className="joke-favorite-container">
@@ -24,7 +30,7 @@ const Joke = ({ id, text, favorite, lastUpdated }) => (
         <div className="joke-link-row">
           <span className="joke-id-label">
             ID:
-            <a href="localhost">
+            <a href={`https://api.chucknorris.io/jokes/${id}`}>
               <span>{id}</span>
               <img src="./assets/link-icon.svg" alt="Link icon" />
             </a>
@@ -36,8 +42,14 @@ const Joke = ({ id, text, favorite, lastUpdated }) => (
         </p>
 
         <div className="joke-footer">
-          <span className="joke-last-update">Last update: {lastUpdated} hours ago</span>
-          <span className="joke-category">celebrity</span>
+          <span className="joke-last-update">
+            Last update: {countHoursSinceDate(updatedAt)} hours ago
+          </span>
+          {
+            categories.map(c => (
+              <span className="joke-category" key={`${id}-${c}`}>{c}</span>
+            ))
+          }
         </div>
       </div>
 
@@ -45,5 +57,12 @@ const Joke = ({ id, text, favorite, lastUpdated }) => (
 
   </div>
 )
+Joke.propTypes = {
+  id: t.string.isRequired,
+  text: t.string.isRequired,
+  favorite: t.bool.isRequired,
+  updatedAt: t.string.isRequired,
+  categories: t.arrayOf(t.string).isRequired
+}
 
 export default Joke
