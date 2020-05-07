@@ -13,11 +13,14 @@ const countHoursSinceDate = dateString => {
   return Math.floor((end - start) / 3600000)
 }
 
-const Joke = ({ id, text, favorite, updatedAt, categories }) => (
+const Joke = ({ id, text, isFavorite, updatedAt, categories, onHeartClick }) => (
   <div className="fetched-joke">
 
     <div className="joke-favorite-container">
-      <img src={favorite ? filledHeartIcon : emptyHeartIcon} alt="Favorite the joke" />
+      <img src={isFavorite ? filledHeartIcon : emptyHeartIcon}
+        alt={isFavorite ? 'Remove the joke from favorite' : 'Add the joke to favorite' }
+        onClick={onHeartClick}
+      />
     </div>
 
     <div className="fetched-joke-body">
@@ -60,9 +63,10 @@ const Joke = ({ id, text, favorite, updatedAt, categories }) => (
 Joke.propTypes = {
   id: t.string.isRequired,
   text: t.string.isRequired,
-  favorite: t.bool.isRequired,
+  isFavorite: t.bool.isRequired,
   updatedAt: t.string.isRequired,
-  categories: t.arrayOf(t.string).isRequired
+  categories: t.arrayOf(t.string).isRequired,
+  onHeartClick: t.func.isRequired
 }
 
 export default Joke

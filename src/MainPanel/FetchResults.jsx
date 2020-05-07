@@ -9,13 +9,7 @@ const FetchResults = ({ jokes }) => (
   <div className="fetch-results">
     {
       jokes.map(j => (
-        <Joke key={j.id}
-          id={j.id}
-          text={j.value}
-          favorite={false}
-          updatedAt={j.updated_at}
-          categories={j.categories}
-        />
+        <Joke key={j.id} {...j} />
       ))
     }
   </div>
@@ -26,7 +20,9 @@ FetchResults.propTypes = {
       id: t.string.isRequired,
       value: t.string.isRequired,
       updated_at: t.string.isRequired,
-      categories: t.arrayOf(t.string).isRequired
+      categories: t.arrayOf(t.string).isRequired,
+      isFavorite: t.bool.isRequired,
+      onHeartClick: t.func.isRequired
     })
   ).isRequired
 }
