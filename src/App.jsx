@@ -16,7 +16,6 @@ const App = () => {
   ), [])
 
   const addFavoriteJoke = joke => {
-    console.log('liked')
     storeJoke(joke)
     setFavoriteJokes({
       ...favoriteJokes,
@@ -26,15 +25,16 @@ const App = () => {
 
   const removeFavoriteJoke = joke => {
     const { id } = joke
+    const filtered = Object.entries(favoriteJokes)
+      .reduce((acc, [key, value]) => {
+        if (key !== id) {
+          acc[key] = value
+        }
+        return acc
+      }, {})
     removeJoke(id)
     setFavoriteJokes(
-      Object.entries(favoriteJokes)
-        .reduce((acc, [key, value]) => {
-          if (key !== id) {
-            acc[key] = value
-          }
-          return acc
-        }, {})
+      filtered
     )
   }
 
@@ -48,8 +48,8 @@ const App = () => {
         isJokeFavorite={isJokeFavorite}
       />
       <FavoritePanel
+        favoriteJokes={Object.values(favoriteJokes)}
         removeFavoriteJoke={removeFavoriteJoke}
-        favoriteJokes={favoriteJokes}
       />
     </>
   )
