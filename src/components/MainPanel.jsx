@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import t from 'prop-types'
 
-import FetchForm from './FetchForm'
-import FetchResults from './FetchResults'
+import FetchForm from './MainPanelComponents/FetchForm'
+import FetchResults from './MainPanelComponents/FetchResults'
 
 import './MainPanel.css'
 

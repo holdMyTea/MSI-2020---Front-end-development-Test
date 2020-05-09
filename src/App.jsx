@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import MainPanel from './MainPanel/MainPanel'
+import MainPanel from './components/MainPanel'
 import FavoritePanel from './components/FavoritePanel'
 
 import { fetchStoredFavoriteJokes, storeJoke, removeJoke } from './favoriteStorage'
