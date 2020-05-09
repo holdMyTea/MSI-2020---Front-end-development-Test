@@ -6,9 +6,18 @@ import FetchResults from './MainPanelComponents/FetchResults'
 
 import './MainPanel.css'
 
+/**
+ * React Component that renders fetch form and corresponding results.
+ * @param {Object} props
+ * @param {function} props.addFavoriteJoke - function to add a joke to the list of favorites
+ * @param {function} props.removeFavoriteJoke - function to remove a joke from the list of favorites
+ * @param {function} props.isJokeFavorite - function to check if a joke in the list of favorites
+ */
 const MainPanel = ({ addFavoriteJoke, removeFavoriteJoke, isJokeFavorite }) => {
+  // state for storing jokes fetched by the `FetchForm`
   const [fetchedJokes, setFetchedJokes] = useState([])
 
+  // mapping `fetchedJokes` to check if each jokes is favorite, add corresponding onClick function
   const jokes = fetchedJokes.map(j => {
     const isFavorite = isJokeFavorite(j)
     j.isFavorite = isFavorite

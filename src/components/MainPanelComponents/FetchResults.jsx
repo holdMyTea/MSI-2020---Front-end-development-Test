@@ -3,8 +3,15 @@ import t from 'prop-types'
 
 import Joke from '../../components/JokeView'
 
+import JokeType from '../../types/JokeType'
+
 import './FetchResults.css'
 
+/**
+ * React Component rendering the list of fetched jokes
+ * @param {Object} props
+ * @param {Joke[]} props.jokes
+ */
 const FetchResults = ({ jokes }) => (
   <div className="fetch-results">
     {
@@ -15,16 +22,7 @@ const FetchResults = ({ jokes }) => (
   </div>
 )
 FetchResults.propTypes = {
-  jokes: t.arrayOf(
-    t.shape({
-      id: t.string.isRequired,
-      value: t.string.isRequired,
-      updated_at: t.string.isRequired,
-      categories: t.arrayOf(t.string).isRequired,
-      isFavorite: t.bool.isRequired,
-      onHeartClick: t.func.isRequired
-    })
-  ).isRequired
+  jokes: t.arrayOf(t.shape(JokeType)).isRequired
 }
 
 export default FetchResults

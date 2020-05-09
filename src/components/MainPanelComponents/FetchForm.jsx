@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import t from 'prop-types'
 
-import SearchOption from './FormComponents/SearchOption'
+import FetchRadioOption from './FormComponents/FetchRadioOption'
 import CategoriesSelector from './FormComponents/CategoriesSelector'
 import TextSearchInput from './FormComponents/TextSearchInput'
 
 import './FetchForm.css'
 
+// list of possible joke fetching options
 const searchOptions = {
   random: 'Random',
   fromCategories: 'From categories',
   search: 'Search'
 }
 
+/**
+ * React Component with input form for jokes fetching
+ * @param {Object} props
+ * @param {function} props.onFetched - callback to be called when joke(s) has been fetched
+ */
 const FetchForm = ({ onFetched }) => {
-  // state for search option
+  // state for the currently selected joke fetch option
   const [selectedOption, setSelectedOption] = useState(searchOptions.random)
 
   // stores fetched joke categories
@@ -26,27 +32,30 @@ const FetchForm = ({ onFetched }) => {
   // state for text search input
   const [textSearchInput, setTextSearchInput] = useState('')
 
+  // fetching joke categories on first render
   useEffect(() => {
     fetch('https://api.chucknorris.io/jokes/categories')
       .then(response => response.json())
       .then(body => setCategories(body))
   }, [])
 
+  // onClick function for the `Get a joke` button
+  // fetches jokes according to the selected option and accroding inputs
   const onSubmit = () => {
     let fetchURL
     if (selectedOption === searchOptions.random) {
       fetchURL = 'https://api.chucknorris.io/jokes/random'
     } else if (selectedOption === searchOptions.fromCategories) {
-      if (!selectedCategory) {
+      if (!selectedCategory) { // aborting, if no category is selected
         return
       }
       fetchURL = `https://api.chucknorris.io/jokes/random?category=${selectedCategory}`
     } else if (selectedOption === searchOptions.search) {
-      if (textSearchInput === '') {
+      if (textSearchInput === '') { // aborting if text search input is empty
         return
       }
       fetchURL = `https://api.chucknorris.io/jokes/search?query=${textSearchInput}`
-    } else {
+    } else { // aborting if no fetch options is selected
       return
     }
 
@@ -67,12 +76,12 @@ const FetchForm = ({ onFetched }) => {
       <header className="hey">Hey!</header>
       <header className="find-header">Lets try to find a joke for you:</header>
 
-      <SearchOption label='Random'
+      <FetchRadioOption label='Random'
         onChange={() => setSelectedOption(searchOptions.random)}
         checked={selectedOption === searchOptions.random}
       />
 
-      <SearchOption label='From categories'
+      <FetchRadioOption label='From categories'
         onChange={() => setSelectedOption(searchOptions.fromCategories)}
         checked={selectedOption === searchOptions.fromCategories}
       />
@@ -83,7 +92,7 @@ const FetchForm = ({ onFetched }) => {
         visible={selectedOption === searchOptions.fromCategories}
       />
 
-      <SearchOption label='Search'
+      <FetchRadioOption label='Search'
         onChange={() => setSelectedOption(searchOptions.search)}
         checked={selectedOption === searchOptions.search}
       />

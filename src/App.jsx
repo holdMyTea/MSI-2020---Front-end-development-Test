@@ -7,14 +7,22 @@ import { fetchStoredFavoriteJokes, storeJoke, removeJoke } from './favoriteStora
 
 import './reset.css'
 
+/**
+ * The root React Component
+ */
 const App = () => {
   // stores the list of favorite jokes
   const [favoriteJokes, setFavoriteJokes] = useState({})
 
+  // Get the list of favorite jokes from the localStorage on first render
   useEffect(() => setFavoriteJokes(
     fetchStoredFavoriteJokes()
   ), [])
 
+  /**
+   * Adds the `joke` to the list of favorite ones in the local state and stores it in localStorage
+   * @param {Joke} joke
+   */
   const addFavoriteJoke = joke => {
     storeJoke(joke)
     setFavoriteJokes({
@@ -23,6 +31,10 @@ const App = () => {
     })
   }
 
+  /**
+   * Removes the `joke` from the list of favorite ones in the local state and removes it from localStorage
+   * @param {Joke} joke
+   */
   const removeFavoriteJoke = joke => {
     const { id } = joke
     const filtered = Object.entries(favoriteJokes)
@@ -38,6 +50,10 @@ const App = () => {
     )
   }
 
+  /**
+   * Checks if the `joke` is in the list of favorite ones in the local state
+   * @param {Joke} joke
+   */
   const isJokeFavorite = joke => !!favoriteJokes[joke.id]
 
   return (

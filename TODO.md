@@ -1,4 +1,1 @@
-- Check sanity of margins/paddings
-- Run somekind of linter for code quality
-- Break down CSS into smaller pieces
-- File structure
+- Make it fetch on ENTER
