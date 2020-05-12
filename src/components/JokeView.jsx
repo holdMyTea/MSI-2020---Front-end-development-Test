@@ -6,7 +6,7 @@ import filledHeartIcon from '../../assets/filled-heart-icon.svg'
 
 import JokeType from '../types/JokeType'
 
-import './JokeView.css'
+import './JokeView.scss'
 
 /**
  * Counts number of hours passed since the `dateString`

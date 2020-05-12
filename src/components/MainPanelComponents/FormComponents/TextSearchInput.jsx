@@ -1,7 +1,7 @@
 import React from 'react'
 import t from 'prop-types'
 
-import './TextSearchInput.css'
+import './TextSearchInput.scss'
 
 /**
  * React Component rendering a text search input

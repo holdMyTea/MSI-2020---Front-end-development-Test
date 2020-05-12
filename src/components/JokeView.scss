@@ -19,21 +19,23 @@
   width: 100%;
   height: 17px;
   margin-bottom: 10px;
-}
-.joke-favorite-container > img {
-  width: 20px;
-  height: 17px;
-  float: right;
+
+  img {
+    width: 20px;
+    height: 17px;
+    float: right;
+  }
 }
 
 .joke-icon-column {
   width: 40px;
   margin-right: 20px;
   float: left;
-}
-.joke-icon-column > img {
-  width: 40px;
-  height: 40px;
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .joke-main-column {
@@ -52,20 +54,23 @@
   font-size: 10px;
   line-height: 14px;
   color: #ABABAB;
-}
-.joke-id-label > a {
-  text-decoration: none;
-}
-.joke-id-label > a > span {
-  color: #8EA7FF;
-  padding-bottom: 0.2px;
-  border-bottom: 0.5px solid #8EA7FF;
-}
-.joke-id-label > a > img {
-  width: 10px;
-  height: 10px;
-  vertical-align: top;
-  margin-left: 5px;
+
+  a {
+    text-decoration: none;
+
+    span {
+      color: #8EA7FF;
+      padding-bottom: 0.2px;
+      border-bottom: 0.5px solid #8EA7FF;
+    }
+
+    img {
+      width: 10px;
+      height: 10px;
+      vertical-align: top;
+      margin-left: 5px;
+    }
+  }
 }
 
 .joke-text {
@@ -85,30 +90,32 @@
 .joke-footer {
   width: 100%;
   margin-top: 23px;
+
+  .joke-last-update {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 14px;
+    color: #ABABAB;
+  }
+
+  .joke-category {
+    float: right;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #333333;
+    background: #FFFFFF;
+    border-radius: 6px;
+    padding: 6px 20px;
+  }
 }
 /* overriding font style within the favorite bar */
 .fav-bar-container .joke-footer {
   margin-top: 20px;
-}
-.joke-footer > .joke-last-update {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 14px;
-  color: #ABABAB;
-}
-.joke-footer > .joke-category {
-  float: right;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 10px;
-  line-height: 14px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #333333;
-  background: #FFFFFF;
-  border-radius: 6px;
-  padding: 6px 20px;
 }

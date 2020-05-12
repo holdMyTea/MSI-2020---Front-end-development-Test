@@ -5,7 +5,7 @@ import FetchRadioOption from './FormComponents/FetchRadioOption'
 import CategoriesSelector from './FormComponents/CategoriesSelector'
 import TextSearchInput from './FormComponents/TextSearchInput'
 
-import './FetchForm.css'
+import './FetchForm.scss'
 
 // list of possible joke fetching options
 const searchOptions = {

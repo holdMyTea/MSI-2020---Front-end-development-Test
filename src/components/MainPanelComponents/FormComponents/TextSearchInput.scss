@@ -14,17 +14,18 @@
   font-size: 16px;
   line-height: 22px;
   transition: opacity 0.1s, padding 0.7s, margin 0.7s, height 0.7s;
-}
 
-.search-input::placeholder {
-  color: #ABABAB;
-}
+  &::placeholder {
+    color: #ABABAB;
+  }
 
-.search-input.visible-search-input {
-  padding: 10px 15px;
-  margin: 10px 0;
-  height: auto;
-  opacity: 1;
-  visibility: visible;
-  border: 2px solid #333;
+  // enabling search bar visibility
+  &.visible-search-input {
+    padding: 10px 15px;
+    margin: 10px 0;
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+    border: 2px solid #333;
+  }
 }

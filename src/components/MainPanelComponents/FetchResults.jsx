@@ -5,7 +5,7 @@ import Joke from '../../components/JokeView'
 
 import JokeType from '../../types/JokeType'
 
-import './FetchResults.css'
+import './FetchResults.scss'
 
 /**
  * React Component rendering the list of fetched jokes

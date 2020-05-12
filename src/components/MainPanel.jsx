@@ -4,7 +4,7 @@ import t from 'prop-types'
 import FetchForm from './MainPanelComponents/FetchForm'
 import FetchResults from './MainPanelComponents/FetchResults'
 
-import './MainPanel.css'
+import './MainPanel.scss'
 
 /**
  * React Component that renders fetch form and corresponding results.

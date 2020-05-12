@@ -1,7 +1,7 @@
 import React from 'react'
 import t from 'prop-types'
 
-import './FetchRadioOption.css'
+import './FetchRadioOption.scss'
 
 /**
  * React Component displaying a single radio with label

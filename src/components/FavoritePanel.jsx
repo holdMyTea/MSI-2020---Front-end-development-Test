@@ -5,7 +5,7 @@ import Joke from './JokeView'
 
 import JokeType from '../types/JokeType'
 
-import './FavoritePanel.css'
+import './FavoritePanel.scss'
 
 /**
  * React Component that renders a list of favorite jokes in a sidebar

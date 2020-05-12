@@ -1,0 +1,23 @@
+.fav-bar {
+  height: 100%;
+  flex-grow: 0;
+  background-color: #f8f8f8;
+  overflow-y: auto;
+
+  .fav-bar-container {
+    margin: 0 auto;
+    width: 400px;
+    max-width: 400px;
+    padding: 40px 40px 0 40px;
+  
+    header {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 28px;
+      color: #ABABAB;
+      margin-bottom: 20px;
+    }    
+  }
+}

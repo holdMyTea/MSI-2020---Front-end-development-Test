@@ -1,7 +1,7 @@
 import React from 'react'
 import t from 'prop-types'
 
-import './CategoriesSelector.css'
+import './CategoriesSelector.scss'
 
 /**
  * React Component displaying a single category view
