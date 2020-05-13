@@ -3,6 +3,15 @@ main {
 
   .container {
     width: 680px;
-    margin: 40 auto 0 auto;
+    margin: 40 auto;
   }  
+}
+
+main.tablet-main {
+  width: 100%;
+
+  .container {
+    width: calc(100% - 80px);
+    margin: 40px;
+  }
 }

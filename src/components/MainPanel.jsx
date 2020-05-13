@@ -4,6 +4,8 @@ import t from 'prop-types'
 import FetchForm from './MainPanelComponents/FetchForm'
 import FetchResults from './MainPanelComponents/FetchResults'
 
+import { useMobileLayout } from './../utils/useMobileLayout'
+
 import './MainPanel.scss'
 
 /**
@@ -16,6 +18,8 @@ import './MainPanel.scss'
 const MainPanel = ({ addFavoriteJoke, removeFavoriteJoke, isJokeFavorite }) => {
   // state for storing jokes fetched by the `FetchForm`
   const [fetchedJokes, setFetchedJokes] = useState([])
+
+  const { isTablet } = useMobileLayout()
 
   // mapping `fetchedJokes` to check if each jokes is favorite, add corresponding onClick function
   const jokes = fetchedJokes.map(j => {
@@ -30,7 +34,7 @@ const MainPanel = ({ addFavoriteJoke, removeFavoriteJoke, isJokeFavorite }) => {
   })
 
   return (
-    <main>
+    <main className={isTablet ? 'tablet-main' : ''}>
       <div className="container">
 
         <FetchForm onFetched={setFetchedJokes} />
