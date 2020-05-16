@@ -19,25 +19,27 @@ import './FavoritePanel.scss'
  * @param {function} props.removeFavoriteJoke - function to remove a joke from favorites
  */
 const FavoritePanel = ({ favoriteJokes, removeFavoriteJoke }) => {
-  const { isTablet } = useMobileLayout()
+  const { isTablet, isMobile } = useMobileLayout()
 
   const [isMobileFavBarOpen, setMobileFavBarOpen] = useState(false)
 
   const favBarClassName = isTablet
     ? (isMobileFavBarOpen ? 'fav-bar tablet-fav-bar-open' : 'fav-bar tablet-fav-bar-closed')
-    : 'fav-bar'
+    : isMobile
+      ? (isMobileFavBarOpen ? 'fav-bar mobile-fav-bar-open' : 'fav-bar mobile-fav-bar-closed')
+      : 'fav-bar'
 
   console.log(favBarClassName)
 
   return (
     <>
       {
-        isTablet && (
-          <div className='mobile-fav-toggle'
+        (isTablet || isMobile) && (
+          <div className={`${isTablet ? 'tablet' : 'mobile'}-fav-toggle`}
             onClick={() => setMobileFavBarOpen(!isMobileFavBarOpen)}
           >
             <img src={isMobileFavBarOpen ? toggleMenuOffIcon : toggleMenuOnIcon}
-              alt='show favorite menu'
+              alt={isMobileFavBarOpen ? 'hide favorite menu' : 'show favorite menu'}
             />
             <label className='fav-header'>Favorite</label>
           </div>
@@ -45,7 +47,7 @@ const FavoritePanel = ({ favoriteJokes, removeFavoriteJoke }) => {
       }
 
       {
-        isMobileFavBarOpen && (
+        (isMobileFavBarOpen && isTablet) && (
           <div className='fav-bar-dimmer'
             onClick={() => setMobileFavBarOpen(false)}
           />

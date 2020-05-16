@@ -1,4 +1,4 @@
-main {
+main.desktop-main {
   flex-grow: 2;
 
   .container {
@@ -13,5 +13,14 @@ main.tablet-main {
   .container {
     width: calc(100% - 80px);
     margin: 40px;
+  }
+}
+
+main.mobile-main {
+  width: 100%;
+
+  .container {
+    width: calc(100% - 40px);
+    margin: 20px;
   }
 }

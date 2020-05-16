@@ -1,14 +1,16 @@
+// default fav-bar style for desktop version
 .fav-bar {
   height: 100%;
   flex-grow: 0;
   background-color: #f8f8f8;
-  overflow-y: auto;
+  overflow-y: initial;
 
   .fav-bar-container {
-    margin: 20 auto 0 auto;
+    margin: 0 auto 0 auto;
     width: 400px;
     max-width: 400px;
     padding: 40px;
+    height: 100%;
     
     .fav-header {
       display: block;
@@ -17,6 +19,7 @@
   }
 }
 
+// The "Favorite" header wherever it is
 .fav-header {
   font-family: Roboto;
   font-style: normal;
@@ -26,6 +29,7 @@
   color: #ABABAB;
 }
 
+// the darken background dimmer for tablet version
 .fav-bar-dimmer {
   z-index: 30;
   background:rgba(0,0,0,0.5);
@@ -34,14 +38,15 @@
   height: 100%;
 }
 
-.fav-bar.tablet-fav-bar-closed {
+// closed Favorites sidebar for tablet & mobile versions
+.fav-bar.tablet-fav-bar-closed, .fav-bar.mobile-fav-bar-closed {
   width: 0;
   position: absolute;
   right: 0;
   top: 0;
 }
 
-.fav-bar.tablet-fav-bar-open {
+%fav-bar-open {
   position: absolute;
   right: 0;
   top: 0;
@@ -58,7 +63,21 @@
   }
 }
 
-.mobile-fav-toggle {
+.fav-bar.tablet-fav-bar-open {
+  @extend %fav-bar-open;
+}
+
+.fav-bar.mobile-fav-bar-open {
+  @extend %fav-bar-open;
+  width: 100%;
+
+  .fav-bar-container {
+    padding: 20px;
+    width: calc(100% - 40px);
+  }
+}
+
+%fav-toggle {
   position: absolute;
   width: 110px;
   top: 40px;
@@ -75,4 +94,14 @@
     float: right;
     margin-left: 10px;
   }
+}
+
+.tablet-fav-toggle {
+  @extend %fav-toggle;
+}
+
+.mobile-fav-toggle {
+  @extend %fav-toggle;
+  top: 20px;
+  right: 20px;
 }

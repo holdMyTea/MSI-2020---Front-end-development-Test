@@ -19,7 +19,7 @@ const MainPanel = ({ addFavoriteJoke, removeFavoriteJoke, isJokeFavorite }) => {
   // state for storing jokes fetched by the `FetchForm`
   const [fetchedJokes, setFetchedJokes] = useState([])
 
-  const { isTablet } = useMobileLayout()
+  const { isTablet, isMobile } = useMobileLayout()
 
   // mapping `fetchedJokes` to check if each jokes is favorite, add corresponding onClick function
   const jokes = fetchedJokes.map(j => {
@@ -33,8 +33,12 @@ const MainPanel = ({ addFavoriteJoke, removeFavoriteJoke, isJokeFavorite }) => {
     return j
   })
 
+  const mainClassName = isTablet ? 'tablet-main'
+    : isMobile ? 'mobile-main'
+      : 'desktop-main'
+
   return (
-    <main className={isTablet ? 'tablet-main' : ''}>
+    <main className={mainClassName}>
       <div className="container">
 
         <FetchForm onFetched={setFetchedJokes} />
