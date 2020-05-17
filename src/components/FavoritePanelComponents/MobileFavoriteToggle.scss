@@ -1,0 +1,28 @@
+%fav-toggle {
+  position: absolute;
+  width: 110px;
+  top: 40px;
+  right: 40px;
+  z-index: 32;
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .fav-header {
+    vertical-align: middle;
+    float: right;
+    margin-left: 10px;
+  }
+}
+
+.tablet-fav-toggle {
+  @extend %fav-toggle;
+}
+
+.mobile-fav-toggle {
+  @extend %fav-toggle;
+  top: 20px;
+  right: 20px;
+}

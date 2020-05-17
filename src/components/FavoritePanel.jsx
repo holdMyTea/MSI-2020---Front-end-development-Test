@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import t from 'prop-types'
 
+import MobileFavoriteToggle from './FavoritePanelComponents/MobileFavoriteToggle'
 import Joke from './JokeView'
 
 import JokeType from '../types/JokeType'
 
 import { useMobileLayout } from './../utils/useMobileLayout'
-
-import toggleMenuOnIcon from '../../assets/favorite-toggle-on.svg'
-import toggleMenuOffIcon from '../../assets/favorite-toggle-off.svg'
 
 import './FavoritePanel.scss'
 
@@ -22,27 +20,23 @@ const FavoritePanel = ({ favoriteJokes, removeFavoriteJoke }) => {
   const { isTablet, isMobile } = useMobileLayout()
 
   const [isMobileFavBarOpen, setMobileFavBarOpen] = useState(false)
+  const onFavBarToggleClick = () => setMobileFavBarOpen(!isMobileFavBarOpen)
 
   const favBarClassName = isTablet
-    ? (isMobileFavBarOpen ? 'fav-bar tablet-fav-bar-open' : 'fav-bar tablet-fav-bar-closed')
+    ? (isMobileFavBarOpen ? 'tablet-fav-bar-open' : 'tablet-fav-bar-closed')
     : isMobile
-      ? (isMobileFavBarOpen ? 'fav-bar mobile-fav-bar-open' : 'fav-bar mobile-fav-bar-closed')
-      : 'fav-bar'
-
-  console.log(favBarClassName)
+      ? (isMobileFavBarOpen ? 'mobile-fav-bar-open' : 'mobile-fav-bar-closed')
+      : ''
 
   return (
     <>
       {
         (isTablet || isMobile) && (
-          <div className={`${isTablet ? 'tablet' : 'mobile'}-fav-toggle`}
-            onClick={() => setMobileFavBarOpen(!isMobileFavBarOpen)}
-          >
-            <img src={isMobileFavBarOpen ? toggleMenuOffIcon : toggleMenuOnIcon}
-              alt={isMobileFavBarOpen ? 'hide favorite menu' : 'show favorite menu'}
-            />
-            <label className='fav-header'>Favorite</label>
-          </div>
+          <MobileFavoriteToggle
+            isTablet={isTablet}
+            isFavBarOpen={isMobileFavBarOpen}
+            onToggleClick={onFavBarToggleClick}
+          />
         )
       }
 
@@ -54,7 +48,7 @@ const FavoritePanel = ({ favoriteJokes, removeFavoriteJoke }) => {
         )
       }
 
-      <div className={favBarClassName}>
+      <div className={`fav-bar ${favBarClassName}`}>
         <div className='fav-bar-container'>
           <label className='fav-header'>Favorite</label>
           {
@@ -73,7 +67,6 @@ const FavoritePanel = ({ favoriteJokes, removeFavoriteJoke }) => {
     </>
   )
 }
-
 FavoritePanel.propTypes = {
   favoriteJokes: t.arrayOf(t.shape(JokeType)).isRequired,
   removeFavoriteJoke: t.func.isRequired
