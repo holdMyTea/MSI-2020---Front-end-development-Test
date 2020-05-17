@@ -7,13 +7,6 @@
   margin-bottom: 20px;
   box-sizing: border-box;
 }
-/* overriding container style within the favorite bar */
-.fav-bar-container > .fetched-joke {
-  padding: 20px;
-  background: #FFFFFF;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
 
 .joke-favorite-container {
   width: 100%;
@@ -81,11 +74,6 @@
   font-weight: normal; 
   color: #333333;
 }
-/* overriding font style within the favorite bar */
-.fav-bar-container .joke-text {
-  font-size: 14px;
-  line-height: 20px;
-}
 
 .joke-footer {
   width: 100%;
@@ -114,8 +102,4 @@
     border-radius: 6px;
     padding: 6px 20px;
   }
-}
-/* overriding font style within the favorite bar */
-.fav-bar-container .joke-footer {
-  margin-top: 20px;
 }

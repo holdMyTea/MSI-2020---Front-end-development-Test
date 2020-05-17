@@ -1,6 +1,5 @@
 // default fav-bar style for desktop version
 .fav-bar {
-  height: 100%;
   flex-grow: 0;
   background-color: #f8f8f8;
 
@@ -9,11 +8,32 @@
     width: 400px;
     max-width: 400px;
     padding: 40px;
-    height: 100%;
     
     .fav-header {
       display: block;
       margin-bottom: 20px;
+    }
+    
+    // overriding joke style within the favorite bar
+    .fetched-joke {
+      padding: 20px;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+
+      .joke-text {
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      .joke-footer {
+        margin-top: 20px;
+      }
+    }
+
+    // removing bottom margin for the last joke's div
+    div:last-child {
+      margin-bottom: 0;
     }
   }
 }
@@ -50,12 +70,12 @@
   }
 }
 
+// basic mobile opened fab bar
 %fav-bar-open {
   position: absolute;
   right: 0;
   top: 0;
   width: auto;
-  height: 100%;
   z-index: 31;
 
   .fav-bar-container {
@@ -66,11 +86,11 @@
     }
   }
 }
-
+// tablet open fav bar
 .fav-bar.tablet-fav-bar-open {
   @extend %fav-bar-open;
 }
-
+// mobile open fav bar
 .fav-bar.mobile-fav-bar-open {
   @extend %fav-bar-open;
   width: 100%;

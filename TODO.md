@@ -1,1 +1,4 @@
 - Make it fetch on ENTER
+- Double check layout precision
+- Make it adjust the screen w/o reload
+- Double-check fav-bar scroll with fetched jokes
