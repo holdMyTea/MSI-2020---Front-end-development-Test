@@ -39,7 +39,7 @@ const MainPanel = ({ addFavoriteJoke, removeFavoriteJoke, isJokeFavorite }) => {
 
   return (
     <main className={mainClassName}>
-      <div className="container">
+      <div className='container'>
 
         <FetchForm onFetched={setFetchedJokes} />
         <FetchResults jokes={jokes} />

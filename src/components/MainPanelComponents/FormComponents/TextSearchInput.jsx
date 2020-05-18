@@ -12,8 +12,8 @@ import './TextSearchInput.scss'
  */
 const TextSearchInput = ({ value, visible, onChange }) => (
   <input className={`search-input ${visible ? 'visible-search-input' : ''}`}
-    type="text"
-    placeholder="Free text search..."
+    type='text'
+    placeholder='Free text search...'
     value={value}
     onChange={e => onChange(e.target.value)}
   />

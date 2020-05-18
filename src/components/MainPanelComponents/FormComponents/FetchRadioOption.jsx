@@ -11,14 +11,14 @@ import './FetchRadioOption.scss'
  * @param {boolean} props.checked - whether the option is currently selected
  */
 const FetchRadioOption = ({ label, onChange, checked }) => (
-  <label className="search-option">
+  <label className='search-option'>
     {label}
-    <input type="radio"
+    <input type='radio'
       checked={checked}
-      name="search-option"
+      name='search-option'
       onChange={onChange}
     />
-    <span className="radio"></span>
+    <span className='radio'></span>
   </label>
 )
 FetchRadioOption.propTypes = {

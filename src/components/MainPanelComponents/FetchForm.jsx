@@ -73,9 +73,9 @@ const FetchForm = ({ onFetched }) => {
 
   return (
     <form>
-      <h3 className="msi-header">MSI 2020</h3>
-      <header className="hey">Hey!</header>
-      <header className="find-header">Lets try to find a joke for you:</header>
+      <h3 className='msi-header'>MSI 2020</h3>
+      <header className='hey'>Hey!</header>
+      <header className='find-header'>Lets try to find a joke for you:</header>
 
       <FetchRadioOption label='Random'
         onChange={() => setSelectedOption(searchOptions.random)}
