@@ -1,8 +1,6 @@
 %fav-toggle {
   position: absolute;
   width: 110px;
-  top: 40px;
-  right: 40px;
   z-index: 32;
 
   img {
@@ -19,6 +17,8 @@
 
 .tablet-fav-toggle {
   @extend %fav-toggle;
+  top: 40px;
+  right: 40px;
 }
 
 .mobile-fav-toggle {

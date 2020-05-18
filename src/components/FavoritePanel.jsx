@@ -19,9 +19,11 @@ import './FavoritePanel.scss'
 const FavoritePanel = ({ favoriteJokes, removeFavoriteJoke }) => {
   const { isTablet, isMobile } = useMobileLayout()
 
+  // state to track if mobile/tablet fav bar is open/closed
   const [isMobileFavBarOpen, setMobileFavBarOpen] = useState(false)
   const onFavBarToggleClick = () => setMobileFavBarOpen(!isMobileFavBarOpen)
 
+  // determining styles of fav bar based on current layout
   const favBarClassName = isTablet
     ? (isMobileFavBarOpen ? 'tablet-fav-bar-open' : 'tablet-fav-bar-closed')
     : isMobile
@@ -41,6 +43,7 @@ const FavoritePanel = ({ favoriteJokes, removeFavoriteJoke }) => {
       }
 
       {
+        // dimming outside content when fav bar is open
         (isMobileFavBarOpen && (isTablet || isMobile)) && (
           <div className='fav-bar-dimmer'
             onClick={() => setMobileFavBarOpen(false)}
