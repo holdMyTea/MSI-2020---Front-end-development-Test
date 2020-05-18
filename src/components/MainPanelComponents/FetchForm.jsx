@@ -41,7 +41,8 @@ const FetchForm = ({ onFetched }) => {
 
   // onClick function for the `Get a joke` button
   // fetches jokes according to the selected option and accroding inputs
-  const onSubmit = () => {
+  const onSubmit = e => {
+    e.preventDefault()
     let fetchURL
     if (selectedOption === searchOptions.random) {
       fetchURL = 'https://api.chucknorris.io/jokes/random'
@@ -71,7 +72,7 @@ const FetchForm = ({ onFetched }) => {
   }
 
   return (
-    <>
+    <form>
       <h3 className="msi-header">MSI 2020</h3>
       <header className="hey">Hey!</header>
       <header className="find-header">Lets try to find a joke for you:</header>
@@ -101,8 +102,8 @@ const FetchForm = ({ onFetched }) => {
         visible={selectedOption === searchOptions.search}
       />
 
-      <button onClick={onSubmit} className="search-button">Get a joke</button>
-    </>
+      <button type='submit' onClick={onSubmit} className='submit-button'>Get a joke</button>
+    </form>
   )
 }
 FetchForm.propTypes = {

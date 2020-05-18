@@ -41,7 +41,7 @@ const FavoritePanel = ({ favoriteJokes, removeFavoriteJoke }) => {
       }
 
       {
-        (isMobileFavBarOpen && isTablet) && (
+        (isMobileFavBarOpen && (isTablet || isMobile)) && (
           <div className='fav-bar-dimmer'
             onClick={() => setMobileFavBarOpen(false)}
           />

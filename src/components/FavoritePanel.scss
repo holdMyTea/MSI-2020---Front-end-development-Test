@@ -76,6 +76,8 @@
   right: 0;
   top: 0;
   width: auto;
+  height: max-content;
+  min-height: 100%;
   z-index: 31;
 
   .fav-bar-container {
@@ -98,5 +100,6 @@
   .fav-bar-container {
     padding: 20px;
     width: calc(100% - 40px);
+    margin: 48px auto 0 auto;
   }
 }
