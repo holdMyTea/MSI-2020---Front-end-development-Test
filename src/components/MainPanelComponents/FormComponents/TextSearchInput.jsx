@@ -1,7 +1,7 @@
 import React from 'react'
 import t from 'prop-types'
 
-import './TextSearchInput.css'
+import './TextSearchInput.scss'
 
 /**
  * React Component rendering a text search input
@@ -12,8 +12,8 @@ import './TextSearchInput.css'
  */
 const TextSearchInput = ({ value, visible, onChange }) => (
   <input className={`search-input ${visible ? 'visible-search-input' : ''}`}
-    type="text"
-    placeholder="Free text search..."
+    type='text'
+    placeholder='Free text search...'
     value={value}
     onChange={e => onChange(e.target.value)}
   />

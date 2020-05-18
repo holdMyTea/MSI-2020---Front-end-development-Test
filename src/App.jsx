@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react'
 import MainPanel from './components/MainPanel'
 import FavoritePanel from './components/FavoritePanel'
 
-import { fetchStoredFavoriteJokes, storeJoke, removeJoke } from './favoriteStorage'
+import { fetchStoredFavoriteJokes, storeJoke, removeJoke } from './utils/favoriteStorage'
 
+import './App.scss'
 import './reset.css'
 
 /**
@@ -57,7 +58,7 @@ const App = () => {
   const isJokeFavorite = joke => !!favoriteJokes[joke.id]
 
   return (
-    <>
+    <div className='app'>
       <MainPanel
         addFavoriteJoke={addFavoriteJoke}
         removeFavoriteJoke={removeFavoriteJoke}
@@ -67,7 +68,7 @@ const App = () => {
         favoriteJokes={Object.values(favoriteJokes)}
         removeFavoriteJoke={removeFavoriteJoke}
       />
-    </>
+    </div>
   )
 }
 

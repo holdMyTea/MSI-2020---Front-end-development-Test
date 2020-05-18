@@ -12,3 +12,9 @@ parserOptions:
   ecmaFeatures:
     jsx: true
   sourceType: module
+
+rules:
+  yoda:
+    - 2
+    - never
+    - onlyEquality: true

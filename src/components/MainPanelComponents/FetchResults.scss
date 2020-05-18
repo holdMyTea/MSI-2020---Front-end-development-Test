@@ -1,0 +1,31 @@
+%fetch-results {
+  width: 100%;
+  margin-top: 40px;
+
+  // removing bottom margin for the last joke's div
+  div:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.fetch-results {
+  @extend %fetch-results;
+}
+
+.mobile-fetch-results {
+  @extend %fetch-results;
+
+  // customizing included jokes for mobile view
+  .fetched-joke {
+    padding: 20px;
+
+    .joke-footer > span {
+      display: block;
+
+      &.joke-category {
+        margin-top: 10px;
+        float: left;
+      }
+    }
+  }
+}
