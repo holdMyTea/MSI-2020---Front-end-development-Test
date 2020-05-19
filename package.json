@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open",
-    "test": "jest",
+    "test": "jest --watch",
     "build": "webpack"
   },
   "author": "holdMyTea",
