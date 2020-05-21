@@ -3,36 +3,39 @@ import { mount } from 'enzyme'
 import { act } from 'react-dom/test-utils'
 
 import FetchForm from '../../src/components/MainPanelComponents/FetchForm'
+import FetchRadioOption from '../../src/components/MainPanelComponents/FormComponents/FetchRadioOption'
+import CategoriesSelector from '../../src/components/MainPanelComponents/FormComponents/CategoriesSelector'
+import TextSearchInput from '../../src/components/MainPanelComponents/FormComponents/TextSearchInput'
+
+const categories = ['animal', 'career', 'celebrity']
 
 global.fetch = jest.fn()
 global.fetch.mockResolvedValue({
-  json: () => ['animal', 'career', 'celebrity', 'dev', 'explicit', 'fashion', 'food', 'history', 'money', 'movie', 'music', 'political', 'religion', 'science', 'sport', 'travel']
+  json: () => categories
 })
 
-const renderFetchForm = async () => {
-  let component
+const onFetched = jest.fn()
 
-  const onFetched = jest.fn()
+let component
 
-  await act(async () => {
+const mountComponent = async () => act(
+  async () => {
     component = mount(
       <FetchForm onFetched={onFetched} />
     )
-  })
-
-  return {
-    component,
-    onFetched
   }
-}
+)
 
 describe('<FetchForm />', () => {
-  it('Renders <FetchForm />', async () => {
-    const {
-      component,
-      onFetched
-    } = await renderFetchForm()
+  beforeAll(mountComponent)
 
+  beforeEach(() => {
+    global.fetch.mockClear()
+    onFetched.mockClear()
+  })
+
+  it('Renders <FetchForm />', async () => {
+    await mountComponent()
     // fetch is called for joke categories
     expect(fetch).toHaveBeenCalled()
     // form is rendered
@@ -41,10 +44,132 @@ describe('<FetchForm />', () => {
     expect(onFetched).not.toHaveBeenCalled()
   })
 
-  it('Hides categories by default, and displays them when "From categories" is selected', async () => {
-    const {
-      component,
-      onFetched
-    } = await renderFetchForm()
+  it('Switches selected FetchOption on click', () => {
+    let options = component.find(FetchRadioOption)
+    expect(options).toHaveProperty('length', 3)
+
+    // 'Random' option is selected by default
+    expect(options.at(0).prop('checked')).toBe(true)
+    expect(options.at(1).prop('checked')).toBe(false)
+    expect(options.at(2).prop('checked')).toBe(false)
+
+    // selecting another one
+    options.at(1).find('input').simulate('change', {
+      target: { value: options.at(1).prop('label') }
+    })
+
+    // finding updated options
+    options = component.find(FetchRadioOption)
+    // verifying updated selection
+    expect(options.at(0).prop('checked')).toBe(false)
+    expect(options.at(1).prop('checked')).toBe(true)
+    expect(options.at(2).prop('checked')).toBe(false)
+  })
+
+  it('Shows categories selector when `From categories` is selected', async () => {
+    await mountComponent()
+    expect(component.find(CategoriesSelector).first().prop('visible')).toBe(false)
+
+    // selecting the `From categories` option
+    const fromCategoriesOption = component.find(FetchRadioOption).at(1)
+    fromCategoriesOption.find('input').simulate('change', {
+      target: { value: fromCategoriesOption.prop('label') }
+    })
+
+    expect(component.find(CategoriesSelector).first().prop('visible')).toBe(true)
+  })
+
+  it('Shows search input when `Search` is selected', () => {
+    expect(component.find(TextSearchInput).first().prop('visible')).toBe(false)
+
+    // selecting the `Search` option
+    const searchOption = component.find(FetchRadioOption).at(2)
+    searchOption.find('input').simulate('change', {
+      target: { value: searchOption.prop('label') }
+    })
+
+    expect(component.find(TextSearchInput).first().prop('visible')).toBe(true)
+  })
+
+  it('Fetches random joke', async () => {
+    await mountComponent()
+    fetch.mockClear()
+
+    global.fetch.mockResolvedValueOnce({
+      json: () => ({ key: 'value' })
+    })
+
+    component.find('button').first().simulate('click')
+
+    expect(fetch).toHaveBeenCalled()
+    expect(fetch).toHaveBeenLastCalledWith('https://api.chucknorris.io/jokes/random')
+  })
+
+  it('Fetches joke with selected category', () => {
+    // selecting the `From categories` option
+    const fromCategoriesOption = component.find(FetchRadioOption).at(1)
+    fromCategoriesOption.find('input').simulate('change', {
+      target: { value: fromCategoriesOption.prop('label') }
+    })
+
+    const selectedCategoryIndex = 1
+    component.find(CategoriesSelector).first().childAt(0)
+      .childAt(selectedCategoryIndex).simulate('click')
+
+    component.find('button').first().simulate('click')
+
+    expect(fetch).toHaveBeenCalledTimes(1)
+    expect(fetch).toHaveBeenLastCalledWith(
+      `https://api.chucknorris.io/jokes/random?category=${categories[selectedCategoryIndex]}`
+    )
+  })
+
+  it('Doesn\'t fetch joke if category is not selected', async () => {
+    await mountComponent()
+    fetch.mockClear()
+    // selecting the `From categories` option
+    const fromCategoriesOption = component.find(FetchRadioOption).at(1)
+    fromCategoriesOption.find('input').simulate('change', {
+      target: { value: fromCategoriesOption.prop('label') }
+    })
+
+    component.find('button').first().simulate('click')
+
+    expect(fetch).not.toHaveBeenCalled()
+  })
+
+  it('Fetches jokes by search', () => {
+    // selecting the `Search` option
+    const searchOption = component.find(FetchRadioOption).at(2)
+    searchOption.find('input').simulate('change', {
+      target: { value: searchOption.prop('label') }
+    })
+
+    // adding input to search
+    const sampleText = 'text'
+    component.find(TextSearchInput).first().simulate('change', {
+      target: { value: sampleText }
+    })
+
+    component.find('button').first().simulate('click')
+
+    expect(fetch).toHaveBeenCalled()
+    expect(fetch).toHaveBeenLastCalledWith(
+      `https://api.chucknorris.io/jokes/search?query=${sampleText}`
+    )
+  })
+
+  it('Doesn\'t fetch if search input is empty', async () => {
+    await mountComponent()
+    fetch.mockClear()
+    // selecting the `Search` option
+    const searchOption = component.find(FetchRadioOption).at(2)
+    searchOption.find('input').simulate('change', {
+      target: { value: searchOption.prop('label') }
+    })
+
+    component.find('button').first().simulate('click')
+
+    expect(fetch).not.toHaveBeenCalled()
   })
 })

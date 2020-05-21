@@ -14,6 +14,7 @@ const FetchRadioOption = ({ label, onChange, checked }) => (
   <label className='search-option'>
     {label}
     <input type='radio'
+      value={label}
       checked={checked}
       name='search-option'
       onChange={onChange}
