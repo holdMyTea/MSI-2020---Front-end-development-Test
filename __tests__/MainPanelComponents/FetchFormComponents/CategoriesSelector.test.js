@@ -4,34 +4,26 @@ import { act } from 'react-dom/test-utils'
 
 import CategoriesSelector from '../../../src/components/MainPanelComponents/FormComponents/CategoriesSelector'
 
-const renderCategoriesSelector = async (categories, selectedCategory) => {
-  let component
+const categories = ['Category1', 'TestCategory2', '1o2iw01js1i0']
 
-  const onCategoryClick = jest.fn()
+let component
 
-  await act(async () => {
-    component = mount(
-      <CategoriesSelector
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onCategoryClick={onCategoryClick}
-        visible
-      />
-    )
-  })
-
-  return {
-    component,
-    onCategoryClick
-  }
-}
+const onCategoryClick = jest.fn()
 
 describe('<CategoriesSelector />', () => {
+  beforeAll(async () =>
+    act(async () => {
+      component = mount(
+        <CategoriesSelector
+          categories={categories}
+          onCategoryClick={onCategoryClick}
+          visible
+        />
+      )
+    })
+  )
+
   it('Renders all provided categories', async () => {
-    const categories = ['Category1', 'TestCategory2', '1o2iw01js1i0']
-
-    const { component } = await renderCategoriesSelector(categories)
-
     const renderedCategories = component.find('div.categories-container').children()
 
     expect(renderedCategories).toHaveProperty('length', categories.length)
@@ -42,10 +34,6 @@ describe('<CategoriesSelector />', () => {
   })
 
   it('Calls `onCategory` click with the name of category as param', async () => {
-    const categories = ['Category1', 'TestCategory2', '1o2iw01js1i0']
-
-    const { component, onCategoryClick } = await renderCategoriesSelector(categories)
-
     const categoryIndex = 2
     await act(async () => {
       component.find('label').at(categoryIndex).simulate('click')
@@ -56,14 +44,18 @@ describe('<CategoriesSelector />', () => {
   })
 
   it('Passes `selected` property to the correct category', async () => {
-    const categories = ['Category1', 'TestCategory2', '1o2iw01js1i0']
-
     const selectedCategoryIndex = 1
-    const { component } = await renderCategoriesSelector(categories, categories[selectedCategoryIndex])
-
-    const renderedCategories = component.find('div.categories-container').children()
-    renderedCategories.forEach((child, index) => {
-      expect(child.prop('selected')).toEqual(index === selectedCategoryIndex)
+    component.setProps({
+      categories,
+      onCategoryClick,
+      visible: true,
+      selectedCategory: categories[selectedCategoryIndex]
     })
+
+    component.find('div.categories-container').children().forEach(
+      (child, index) => {
+        expect(child.prop('selected')).toEqual(index === selectedCategoryIndex)
+      }
+    )
   })
 })
