@@ -6,13 +6,17 @@ fetch.mockResolvedValue({
   json: () => categories
 })
 
+/**
+ * Adds a single time mock for `fetch`'s resolve value that simulates joke(s) fetching.
+ * @param {number} [numberOfJokes = 1]
+ */
 const mockJokeFetching = (numberOfJokes = 1) => {
   if (numberOfJokes === 1) {
     fetch.mockResolvedValueOnce({
       json: () => ({
         categories: [],
         created_at: '2020-01-05 13:42:22.980058',
-        id: 'QP_esj66TTiqH5m4NTPglg',
+        id: 'sampleId' + new Date().getTime(),
         updated_at: '2020-01-05 13:42:22.980058',
         value: 'Chuck Norris once made a cannibal eat a bowl of creamed asparagus soup.'
       })
@@ -21,7 +25,7 @@ const mockJokeFetching = (numberOfJokes = 1) => {
     const mockedJokes = new Array(numberOfJokes).fill(0).map((v, i) => ({
       categories: [],
       created_at: '2020-01-05 13:42:22.980058',
-      id: 'sampleId' + i,
+      id: 'sampleId' + i + new Date().getTime(),
       updated_at: '2020-01-05 13:42:22.980058',
       value: 'Chuck Norris once made a cannibal eat a bowl of creamed asparagus soup.'
     }))
