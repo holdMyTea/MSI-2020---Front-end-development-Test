@@ -4,12 +4,9 @@ import { act } from 'react-dom/test-utils'
 
 import FetchForm from '../../../src/components/MainPanelComponents/FetchForm'
 
-const categories = ['animal', 'career', 'celebrity']
+import { categories, fetch } from '../../mocks/functionMocks'
 
-global.fetch = jest.fn()
-global.fetch.mockResolvedValue({
-  json: () => categories
-})
+global.fetch = fetch
 
 const onFetched = jest.fn()
 
@@ -27,7 +24,7 @@ describe('<FetchForm />', () => {
   beforeAll(mountComponent)
 
   beforeEach(() => {
-    global.fetch.mockClear()
+    fetch.mockClear()
     onFetched.mockClear()
   })
 
@@ -92,7 +89,7 @@ describe('<FetchForm />', () => {
     await mountComponent()
     fetch.mockClear()
 
-    global.fetch.mockResolvedValueOnce({
+    fetch.mockResolvedValueOnce({
       json: () => ({ key: 'value' })
     })
 

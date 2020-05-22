@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils'
 
 import CategoriesSelector from '../../../../src/components/MainPanelComponents/FormComponents/CategoriesSelector'
 
-const categories = ['Category1', 'TestCategory2', '1o2iw01js1i0']
+import { categories } from '../../../mocks/functionMocks'
 
 let component
 

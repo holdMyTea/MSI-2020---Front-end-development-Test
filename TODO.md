@@ -1,3 +1,1 @@
-- Separate mocks into separate files
-- Simplify beforeEach'es
 - DO MAKE JokeView.jsx test suite

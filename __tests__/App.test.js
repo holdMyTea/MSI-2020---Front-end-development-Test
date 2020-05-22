@@ -4,12 +4,9 @@ import { act } from 'react-dom/test-utils'
 
 import App from '../src/App'
 
-const categories = ['animal', 'career', 'celebrity']
+import { fetch } from './mocks/functionMocks'
 
-global.fetch = jest.fn()
-global.fetch.mockResolvedValue({
-  json: () => categories
-})
+global.fetch = fetch
 
 let component
 
@@ -25,7 +22,7 @@ describe('<App />', () => {
   beforeAll(mountComponent)
 
   beforeEach(() => {
-    global.fetch.mockClear()
+    fetch.mockClear()
   })
 
   it('Renders <App />', async () => {
