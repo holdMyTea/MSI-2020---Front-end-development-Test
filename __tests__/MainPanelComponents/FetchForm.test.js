@@ -3,9 +3,6 @@ import { mount } from 'enzyme'
 import { act } from 'react-dom/test-utils'
 
 import FetchForm from '../../src/components/MainPanelComponents/FetchForm'
-import FetchRadioOption from '../../src/components/MainPanelComponents/FormComponents/FetchRadioOption'
-import CategoriesSelector from '../../src/components/MainPanelComponents/FormComponents/CategoriesSelector'
-import TextSearchInput from '../../src/components/MainPanelComponents/FormComponents/TextSearchInput'
 
 const categories = ['animal', 'career', 'celebrity']
 
@@ -45,7 +42,7 @@ describe('<FetchForm />', () => {
   })
 
   it('Switches selected FetchOption on click', () => {
-    let options = component.find(FetchRadioOption)
+    let options = component.find('label.search-option > input')
     expect(options).toHaveProperty('length', 3)
 
     // 'Random' option is selected by default
@@ -59,7 +56,7 @@ describe('<FetchForm />', () => {
     })
 
     // finding updated options
-    options = component.find(FetchRadioOption)
+    options = component.find('label.search-option > input')
     // verifying updated selection
     expect(options.at(0).prop('checked')).toBe(false)
     expect(options.at(1).prop('checked')).toBe(true)
@@ -68,27 +65,27 @@ describe('<FetchForm />', () => {
 
   it('Shows categories selector when `From categories` is selected', async () => {
     await mountComponent()
-    expect(component.find(CategoriesSelector).first().prop('visible')).toBe(false)
+    expect(component.find('.visible-category-container')).toHaveProperty('length', 0)
 
     // selecting the `From categories` option
-    const fromCategoriesOption = component.find(FetchRadioOption).at(1)
+    const fromCategoriesOption = component.find('label.search-option').at(1)
     fromCategoriesOption.find('input').simulate('change', {
       target: { value: fromCategoriesOption.prop('label') }
     })
 
-    expect(component.find(CategoriesSelector).first().prop('visible')).toBe(true)
+    expect(component.find('.visible-category-container')).toHaveProperty('length', 1)
   })
 
   it('Shows search input when `Search` is selected', () => {
-    expect(component.find(TextSearchInput).first().prop('visible')).toBe(false)
+    expect(component.find('.visible-search-input').first()).toHaveProperty('length', 0)
 
     // selecting the `Search` option
-    const searchOption = component.find(FetchRadioOption).at(2)
+    const searchOption = component.find('label.search-option').at(2)
     searchOption.find('input').simulate('change', {
       target: { value: searchOption.prop('label') }
     })
 
-    expect(component.find(TextSearchInput).first().prop('visible')).toBe(true)
+    expect(component.find('.visible-search-input').first()).toHaveProperty('length', 1)
   })
 
   it('Fetches random joke', async () => {
@@ -107,13 +104,13 @@ describe('<FetchForm />', () => {
 
   it('Fetches joke with selected category', () => {
     // selecting the `From categories` option
-    const fromCategoriesOption = component.find(FetchRadioOption).at(1)
+    const fromCategoriesOption = component.find('label.search-option').at(1)
     fromCategoriesOption.find('input').simulate('change', {
       target: { value: fromCategoriesOption.prop('label') }
     })
 
     const selectedCategoryIndex = 1
-    component.find(CategoriesSelector).first().childAt(0)
+    component.find('.visible-category-container').first()
       .childAt(selectedCategoryIndex).simulate('click')
 
     component.find('button').first().simulate('click')
@@ -128,7 +125,7 @@ describe('<FetchForm />', () => {
     await mountComponent()
     fetch.mockClear()
     // selecting the `From categories` option
-    const fromCategoriesOption = component.find(FetchRadioOption).at(1)
+    const fromCategoriesOption = component.find('label.search-option').at(1)
     fromCategoriesOption.find('input').simulate('change', {
       target: { value: fromCategoriesOption.prop('label') }
     })
@@ -140,14 +137,14 @@ describe('<FetchForm />', () => {
 
   it('Fetches jokes by search', () => {
     // selecting the `Search` option
-    const searchOption = component.find(FetchRadioOption).at(2)
+    const searchOption = component.find('label.search-option').at(2)
     searchOption.find('input').simulate('change', {
       target: { value: searchOption.prop('label') }
     })
 
     // adding input to search
     const sampleText = 'text'
-    component.find(TextSearchInput).first().simulate('change', {
+    component.find('.visible-search-input').first().simulate('change', {
       target: { value: sampleText }
     })
 
@@ -163,7 +160,7 @@ describe('<FetchForm />', () => {
     await mountComponent()
     fetch.mockClear()
     // selecting the `Search` option
-    const searchOption = component.find(FetchRadioOption).at(2)
+    const searchOption = component.find('label.search-option').at(2)
     searchOption.find('input').simulate('change', {
       target: { value: searchOption.prop('label') }
     })
