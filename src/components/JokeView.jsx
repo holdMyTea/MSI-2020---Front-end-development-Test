@@ -4,6 +4,8 @@ import messageIcon from '../../assets/message-icon.svg'
 import emptyHeartIcon from '../../assets/empty-heart-icon.svg'
 import filledHeartIcon from '../../assets/filled-heart-icon.svg'
 
+import linkIcon from '../../assets/link-icon.svg'
+
 import JokeType from '../types/JokeType'
 
 import './JokeView.scss'
@@ -46,9 +48,9 @@ const Joke = ({ id, text, isFavorite, updatedAt, categories, onHeartClick }) => 
         <div className='joke-link-row'>
           <span className='joke-id-label'>
             ID:
-            <a href={`https://api.chucknorris.io/jokes/${id}`}>
+            <a href={`https://api.chucknorris.io/jokes/${id}`} target='blank'>
               <span>{id}</span>
-              <img src='./assets/link-icon.svg' alt='Link icon' />
+              <img src={linkIcon} alt='Link icon' />
             </a>
           </span>
         </div>
