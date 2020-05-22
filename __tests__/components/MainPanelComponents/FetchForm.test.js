@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import { act } from 'react-dom/test-utils'
 
-import FetchForm from '../../src/components/MainPanelComponents/FetchForm'
+import FetchForm from '../../../src/components/MainPanelComponents/FetchForm'
 
 const categories = ['animal', 'career', 'celebrity']
 

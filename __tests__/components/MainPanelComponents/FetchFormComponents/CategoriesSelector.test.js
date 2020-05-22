@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import { act } from 'react-dom/test-utils'
 
-import CategoriesSelector from '../../../src/components/MainPanelComponents/FormComponents/CategoriesSelector'
+import CategoriesSelector from '../../../../src/components/MainPanelComponents/FormComponents/CategoriesSelector'
 
 const categories = ['Category1', 'TestCategory2', '1o2iw01js1i0']
 

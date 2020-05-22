@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import { act } from 'react-dom/test-utils'
 
-import MainPanel from '../src/components/MainPanel.jsx'
+import MainPanel from '../../src/components/MainPanel.jsx'
 
 let component
 
@@ -57,7 +57,7 @@ const mockJokeFetching = (numberOfJokes = 1) => {
 }
 
 describe('<MainPanel />', () => {
-  beforeAll(() => renderMainPanel())
+  beforeAll(renderMainPanel)
 
   beforeEach(() => {
     addFavoriteJoke.mockClear()
@@ -71,7 +71,7 @@ describe('<MainPanel />', () => {
     // fetch is called for joke categories
     expect(fetch).toHaveBeenCalled()
     // main div is rendered
-    expect(component.exists('.tablet-main')).toBe(true)
+    expect(component.exists('main')).toBe(true)
     // no props func's called w/o user actions
     expect(addFavoriteJoke).not.toHaveBeenCalled()
     expect(removeFavoriteJoke).not.toHaveBeenCalled()
